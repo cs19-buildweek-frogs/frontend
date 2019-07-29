@@ -16,7 +16,7 @@ function Login() {
     console.log(userObj);
     e.preventDefault();
     axios
-      .post(`https://lambda-mud-test.herokuapp.com/api/login`, userObj)
+      .post(`https://lambda-mud-test.herokuapp.com/api/login/`, userObj)
       .then(res => {
         console.log(res.data);
       })
