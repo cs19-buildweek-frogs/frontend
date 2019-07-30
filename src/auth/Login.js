@@ -13,15 +13,8 @@ function Login() {
 
   const handleLogin = e => {
     e.preventDefault();
-    axios({
-      method: "POST",
-      // headers: {
-      //   "Authorization": token,
-      //   "content-type": "application/json"
-      // },
-      url: `https://lambda-mud-test.herokuapp.com/api/login/`,
-      data: userObj
-    })
+    axios
+      .post(`https://lambda-mud-test.herokuapp.com/api/login/`, userObj)
       .then(res => {
         localStorage.setItem("key", res.data.key);
         console.log(res.data.key);
@@ -56,10 +49,3 @@ function Login() {
 }
 
 export default Login;
-
-// {
-//   room_name: "",
-//   items: "",
-//   x: 0,
-//   y: 0
-// }
