@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "./auth/axiosAuth";
-import axios from "axios";
+
 function Game() {
   const [userGame, setUserGame] = useState({});
+  //   const [userLocation, setUserLocation] = useState({});
+  const [newDirection, setNewDirection] = useState({});
 
   useEffect(() => {
     const getUserGame = () => {
@@ -11,6 +13,7 @@ function Game() {
 
         .then(res => {
           console.log("SERVER RESPONSE IS: ", res.data);
+          setUserGame(res.data);
         })
         .catch(error => {
           console.log("HERE GAME", localStorage);
@@ -19,10 +22,31 @@ function Game() {
     };
     getUserGame();
   }, []);
+
+  useEffect(() => {
+    const postUserLocation = () => {
+      axiosWithAuth()
+        .post(
+          "https://lambda-mud-test.herokuapp.com/api/adv/move/",
+          newDirection
+        )
+
+        .then(res => {
+          console.log("SERVER RESPONSE IS: ", res.data);
+          setUserGame(res.data);
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
+    };
+    postUserLocation();
+  }, [newDirection]);
+
   const move = e => {
     e.preventDefault();
-    console.log(e.target.value);
+    setNewDirection({ direction: e.currentTarget.value });
   };
+
   return (
     <>
       <div>Game</div>
@@ -30,6 +54,24 @@ function Game() {
         North
       </button>
       {/* <button onClick={getUserGame}>Start game</button> */}
+      <div>{userGame.title}</div>
+      {userGame.error_msg ? (
+        <div>{userGame.error_msg}</div>
+      ) : (
+        <div>{userGame.description}</div>
+      )}
+      <button onClick={move} value={"n"}>
+        N
+      </button>
+      <button onClick={move} value={"s"}>
+        S
+      </button>
+      <button onClick={move} value={"e"}>
+        E
+      </button>
+      <button onClick={move} value={"w"}>
+        W
+      </button>
     </>
   );
 }
