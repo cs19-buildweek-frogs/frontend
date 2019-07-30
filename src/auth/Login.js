@@ -15,6 +15,7 @@ function Login() {
   const handleLogin = e => {
     console.log(userObj);
     e.preventDefault();
+<<<<<<< HEAD
     axios({
       method: "POST",
       // headers: {
@@ -24,6 +25,10 @@ function Login() {
       url: `https://lambda-mud-test.herokuapp.com/api/login/`,
       data: userObj
     })
+=======
+    axios
+      .post(`https://lambda-mud-test.herokuapp.com/api/login/`, userObj)
+>>>>>>> master
       .then(res => {
         console.log(res.data);
         localStorage.setItem("token", res.data.key);
