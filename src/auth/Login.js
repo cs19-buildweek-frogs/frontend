@@ -17,11 +17,16 @@ function Login() {
     e.preventDefault();
     axios({
       method: "POST",
+      // headers: {
+      //   "Authorization": token,
+      //   "content-type": "application/json"
+      // },
       url: `https://lambda-mud-test.herokuapp.com/api/login/`,
       data: userObj
     })
       .then(res => {
         console.log(res.data);
+        localStorage.setItem("token", res.data.key);
       })
       .catch(error => {
         console.log(error.message);

@@ -22,6 +22,7 @@ function Registration() {
     })
       .then(res => {
         console.log(res.data);
+        localStorage.setItem("token", res.data.key);
       })
       .catch(error => {
         console.log(error.message);
