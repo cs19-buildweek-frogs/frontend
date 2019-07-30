@@ -5,7 +5,6 @@ function Registration() {
   const [userObj, setUser] = useState({});
 
   const handleChange = e => {
-    console.log(userObj);
     setUser({
       ...userObj,
       [e.target.name]: e.target.value
@@ -13,7 +12,6 @@ function Registration() {
   };
 
   const handleLogin = e => {
-    console.log(userObj);
     e.preventDefault();
     axios({
       method: "POST",
@@ -21,8 +19,7 @@ function Registration() {
       data: userObj
     })
       .then(res => {
-        console.log(res.data);
-        localStorage.setItem("token", res.data.key);
+        localStorage.setItem("key", res.data.key);
       })
       .catch(error => {
         console.log(error.message);
@@ -49,7 +46,7 @@ function Registration() {
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="confirm password"
           name="password2"
           value={userObj.password2}
           onChange={handleChange}

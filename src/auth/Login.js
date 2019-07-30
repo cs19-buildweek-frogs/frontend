@@ -5,7 +5,6 @@ function Login() {
   const [userObj, setUser] = useState({});
 
   const handleChange = e => {
-    console.log(userObj);
     setUser({
       ...userObj,
       [e.target.name]: e.target.value
@@ -13,7 +12,6 @@ function Login() {
   };
 
   const handleLogin = e => {
-    console.log(userObj);
     e.preventDefault();
     axios({
       method: "POST",
@@ -25,8 +23,8 @@ function Login() {
       data: userObj
     })
       .then(res => {
-        console.log(res.data);
-        localStorage.setItem("token", res.data.key);
+        localStorage.setItem("key", res.data.key);
+        console.log(res.data.key);
       })
       .catch(error => {
         console.log(error.message);
