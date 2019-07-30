@@ -5,7 +5,6 @@ function Login() {
   const [userObj, setUser] = useState({});
 
   const handleChange = e => {
-    console.log(userObj);
     setUser({
       ...userObj,
       [e.target.name]: e.target.value
@@ -13,12 +12,12 @@ function Login() {
   };
 
   const handleLogin = e => {
-    console.log(userObj);
     e.preventDefault();
     axios
       .post(`https://lambda-mud-test.herokuapp.com/api/login/`, userObj)
       .then(res => {
-        console.log(res.data);
+        localStorage.setItem("key", res.data.key);
+        console.log(res.data.key);
       })
       .catch(error => {
         console.log(error.message);
