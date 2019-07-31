@@ -50,9 +50,6 @@ function Game() {
   return (
     <>
       <div>Game</div>
-      <button value="n" onClick={move}>
-        North
-      </button>
       {/* <button onClick={getUserGame}>Start game</button> */}
       <div>{userGame.title}</div>
       {userGame.error_msg ? (
