@@ -19,7 +19,7 @@ function Registration() {
     //   data: userObj
     // })
     axios
-      .post(`https://lambda-mud-test.herokuapp.com/api/registration/`, userObj)
+      .post(`https://mud-be.herokuapp.com/api/registration/`, userObj)
       .then(res => {
         console.log(res.data);
         localStorage.setItem("key", res.data.key);

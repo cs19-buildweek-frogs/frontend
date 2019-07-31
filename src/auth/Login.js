@@ -14,7 +14,7 @@ function Login() {
   const handleLogin = e => {
     e.preventDefault();
     axios
-      .post(`https://lambda-mud-test.herokuapp.com/api/login/`, userObj)
+      .post(`https://mud-be.herokuapp.com/api/login/`, userObj)
       .then(res => {
         localStorage.setItem("key", res.data.key);
         console.log(res.data.key);
@@ -49,3 +49,6 @@ function Login() {
 }
 
 export default Login;
+
+// https://mud-be.herokuapp.com/   <<<<<<-BE
+// https://lambda-mud-test.herokuapp.com/api/login/       <<<<<<< TEST BE
