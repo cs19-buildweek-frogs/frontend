@@ -4,12 +4,12 @@ import axiosWithAuth from "./auth/axiosAuth";
 function Game() {
   const [userGame, setUserGame] = useState({});
   //   const [userLocation, setUserLocation] = useState({});
-  const [newDirection, setNewDirection] = useState({});
+  const [newDirection, setNewDirection] = useState(null);
 
   useEffect(() => {
     const getUserGame = () => {
       axiosWithAuth()
-        .get("https://lambda-mud-test.herokuapp.com/api/adv/init/")
+        .get("https://mud-be.herokuapp.com/api/adv/init/")
 
         .then(res => {
           console.log("SERVER RESPONSE IS: ", res.data);
@@ -26,10 +26,7 @@ function Game() {
   useEffect(() => {
     const postUserLocation = () => {
       axiosWithAuth()
-        .post(
-          "https://lambda-mud-test.herokuapp.com/api/adv/move/",
-          newDirection
-        )
+        .post("https://mud-be.herokuapp.com/api/adv/move/", newDirection)
 
         .then(res => {
           console.log("SERVER RESPONSE IS: ", res.data);
@@ -39,7 +36,9 @@ function Game() {
           console.log(error.message);
         });
     };
-    postUserLocation();
+    if (newDirection) {
+      postUserLocation();
+    }
   }, [newDirection]);
 
   const move = e => {
