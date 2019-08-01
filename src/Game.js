@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "./auth/axiosAuth";
+import Map from "./Map";
 
 function Game() {
   const [userGame, setUserGame] = useState({});
@@ -68,6 +69,7 @@ function Game() {
       <button onClick={move} value={"w"}>
         W
       </button>
+      <Map currentRoom={userGame.title} />
     </>
   );
 }
