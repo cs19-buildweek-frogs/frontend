@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Registration() {
+function Registration(props) {
   const [userObj, setUser] = useState({});
 
   const handleChange = e => {
@@ -13,16 +13,11 @@ function Registration() {
 
   const handleLogin = e => {
     e.preventDefault();
-    // axios({
-    //   method: "POST",
-    //   url: `https://lambda-mud-test.herokuapp.com/api/registration/`,
-    //   data: userObj
-    // })
     axios
       .post(`https://mud-be.herokuapp.com/api/registration/`, userObj)
       .then(res => {
-        console.log(res.data);
         localStorage.setItem("key", res.data.key);
+        props.history.push("/protected");
       })
       .catch(error => {
         console.log(error.message);

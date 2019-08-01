@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Login() {
+function Login(props) {
   const [userObj, setUser] = useState({});
 
   const handleChange = e => {
@@ -17,7 +17,7 @@ function Login() {
       .post(`https://mud-be.herokuapp.com/api/login/`, userObj)
       .then(res => {
         localStorage.setItem("key", res.data.key);
-        console.log(res.data.key);
+        props.history.push("/protected");
       })
       .catch(error => {
         console.log(error.message);
@@ -49,6 +49,3 @@ function Login() {
 }
 
 export default Login;
-
-// https://mud-be.herokuapp.com/   <<<<<<-BE
-// https://lambda-mud-test.herokuapp.com/api/login/       <<<<<<< TEST BE
