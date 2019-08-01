@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "./auth/axiosAuth";
 
-// const buildMap = (x,y) => {
-
-// }
-const coordinates = [
-  { room: "a", x: 0, y: 0 },
-  { room: "b", x: 0, y: 1 },
-  { room: "c", x: 0, y: 2 },
-  { room: "d", x: 3, y: 4 }
-];
-
-// const currentRoom = "a";
-
 function Map({ currentRoom }) {
   const [rooms, setRooms] = useState([]);
   useEffect(() => {
@@ -20,7 +8,6 @@ function Map({ currentRoom }) {
       .get("https://mud-be.herokuapp.com/api/adv/rooms/")
 
       .then(res => {
-        console.log("SERVER RESPONSE IS: ", res.data);
         setRooms(res.data);
       })
       .catch(error => {
@@ -33,8 +20,8 @@ function Map({ currentRoom }) {
         className="map-container"
         style={{
           position: "relative",
-          width: "500px",
-          height: "300px",
+          width: "170px",
+          height: "200px",
           margin: "0 auto"
         }}
       >
@@ -65,6 +52,7 @@ function Map({ currentRoom }) {
               borderRadius: "100%"
             };
           }
+
           return (
             <div key={item.title} style={styles} name={item.room}>
               {roomNumber[1]}

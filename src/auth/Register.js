@@ -49,7 +49,7 @@ function Registration(props) {
           value={userObj.password2}
           onChange={handleChange}
         />
-        <button>Register</button>
+        <button className="registerBtn">Register</button>
       </form>
     </div>
   );

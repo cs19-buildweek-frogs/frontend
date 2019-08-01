@@ -10,7 +10,6 @@ function App(props) {
   const logOut = e => {
     e.preventDefault();
     localStorage.removeItem("key");
-    console.log(props.history);
     props.history.push("/login");
   };
   return (
@@ -22,14 +21,14 @@ function App(props) {
             <NavLink to="/register">Register</NavLink>
           </div>
         )}
-        <NavLink to="/protected">Game</NavLink>
+        <NavLink to="/protected">Start New Game</NavLink>
         <button
           className={
             localStorage.getItem("key") ? "loginOutBtn" : "displayNone"
           }
           onClick={logOut}
         >
-          Log out
+          Logout
         </button>
       </header>
       <Route path="/login" component={Login} />

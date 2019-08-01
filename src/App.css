@@ -35,3 +35,62 @@
 .displayNone {
   display: none;
 }
+
+.treasure {
+  color: red;
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  margin-right: 20px;
+}
+a:hover {
+  color: blue;
+}
+
+.loginOutBtn,
+.loginBtn,
+.registerBtn {
+  background: #b4bfc1;
+  border-radius: 2px;
+  font-size: small;
+  outline: none;
+}
+
+.loginOutBtn:hover {
+  background: lightblue;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+input {
+  outline: none;
+  margin: 10px;
+}
+
+.roomTitle,
+.roomDescription {
+  margin-bottom: 20px;
+}
+
+.direction {
+  margin: 10px;
+  font-size: medium;
+  border-radius: 2px;
+  background: #b4bfc1;
+  outline: none;
+}
+.direction:hover {
+  background: rgb(97, 206, 137);
+}
+
+.errorMessage {
+  margin-bottom: 15px;
+}
