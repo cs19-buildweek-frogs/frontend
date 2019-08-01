@@ -3,7 +3,7 @@ import axiosWithAuth from "./auth/axiosAuth";
 
 function Game() {
   const [userGame, setUserGame] = useState({});
-  //   const [userLocation, setUserLocation] = useState({});
+
   const [newDirection, setNewDirection] = useState(null);
 
   useEffect(() => {
@@ -12,11 +12,9 @@ function Game() {
         .get("https://mud-be.herokuapp.com/api/adv/init/")
 
         .then(res => {
-          console.log("SERVER RESPONSE IS: ", res.data);
           setUserGame(res.data);
         })
         .catch(error => {
-          console.log("HERE GAME", localStorage);
           console.log(error.message);
         });
     };
@@ -29,7 +27,6 @@ function Game() {
         .post("https://mud-be.herokuapp.com/api/adv/move/", newDirection)
 
         .then(res => {
-          console.log("SERVER RESPONSE IS: ", res.data);
           setUserGame(res.data);
         })
         .catch(error => {
@@ -49,7 +46,7 @@ function Game() {
   return (
     <>
       <div>Game</div>
-      {/* <button onClick={getUserGame}>Start game</button> */}
+
       <div>{userGame.title}</div>
       {userGame.error_msg ? (
         <div>{userGame.error_msg}</div>
