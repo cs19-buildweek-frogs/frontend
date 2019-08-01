@@ -69,7 +69,7 @@ function Game() {
       <button onClick={move} value={"w"}>
         W
       </button>
-      <Map />
+      <Map currentRoom={userGame.title} />
     </>
   );
 }

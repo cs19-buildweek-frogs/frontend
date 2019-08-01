@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "./auth/axiosAuth";
 
 // const buildMap = (x,y) => {
 
@@ -10,9 +11,22 @@ const coordinates = [
   { room: "d", x: 3, y: 4 }
 ];
 
-const currentRoom = "a";
+// const currentRoom = "a";
 
-function Map() {
+function Map({ currentRoom }) {
+  const [rooms, setRooms] = useState([]);
+  useEffect(() => {
+    axiosWithAuth()
+      .get("https://mud-be.herokuapp.com/api/adv/rooms/")
+
+      .then(res => {
+        console.log("SERVER RESPONSE IS: ", res.data);
+        setRooms(res.data);
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  }, []);
   return (
     <>
       <div
@@ -24,16 +38,17 @@ function Map() {
           margin: "0 auto"
         }}
       >
-        {coordinates.map(item => {
+        {rooms.map(item => {
+          let roomNumber = item.title.split(" ");
           let { x, y } = item;
           x *= 30;
           y *= 30;
           let styles;
-          if (item.room === currentRoom) {
+          if (item.title === currentRoom) {
             styles = {
               position: "absolute",
-              bottom: x,
-              left: y,
+              bottom: y,
+              left: x,
               width: "20px",
               height: "20px",
               background: "red",
@@ -42,8 +57,8 @@ function Map() {
           } else {
             styles = {
               position: "absolute",
-              bottom: x,
-              left: y,
+              bottom: y,
+              left: x,
               width: "20px",
               height: "20px",
               background: "yellow",
@@ -51,8 +66,8 @@ function Map() {
             };
           }
           return (
-            <div key={item.y} style={styles}>
-              {item.room}
+            <div key={item.title} style={styles} name={item.room}>
+              {roomNumber[1]}
             </div>
           );
         })}
