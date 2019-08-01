@@ -42,7 +42,7 @@ function Login(props) {
           value={userObj.password}
           onChange={handleChange}
         />
-        <button>Login</button>
+        <button className="loginBtn">Login</button>
       </form>
     </div>
   );

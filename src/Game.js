@@ -46,24 +46,27 @@ function Game() {
 
   return (
     <>
-      <div>Game</div>
+      {/* <div>Game</div> */}
 
-      <div>{userGame.title}</div>
+      <div className="roomTitle">{userGame.title}</div>
       {userGame.error_msg ? (
-        <div>{userGame.error_msg}</div>
+        <div className="errorMessage">{userGame.error_msg}</div>
       ) : (
-        <div>{userGame.description}</div>
+        <div className="roomDescription">{userGame.description}</div>
       )}
-      <button onClick={move} value={"n"}>
+      {userGame.items ? (
+        <div className="treasure">🐉 You found the {userGame.items} 🐉</div>
+      ) : null}
+      <button className="direction" onClick={move} value={"n"}>
         N
       </button>
-      <button onClick={move} value={"s"}>
+      <button className="direction" onClick={move} value={"s"}>
         S
       </button>
-      <button onClick={move} value={"e"}>
+      <button className="direction" onClick={move} value={"e"}>
         E
       </button>
-      <button onClick={move} value={"w"}>
+      <button className="direction" onClick={move} value={"w"}>
         W
       </button>
       <Map currentRoom={userGame.title} />
