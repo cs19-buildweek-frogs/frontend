@@ -43,7 +43,7 @@ function Game() {
     e.preventDefault();
     setNewDirection({ direction: e.currentTarget.value });
   };
-
+  console.log(userGame);
   return (
     <>
       {/* <div>Game</div> */}
@@ -54,9 +54,16 @@ function Game() {
       ) : (
         <div className="roomDescription">{userGame.description}</div>
       )}
+      {userGame.players
+        ? userGame.players.map(player => {
+            return <div>Other Player: {player}</div>;
+          })
+        : null}
+
       {userGame.items ? (
         <div className="treasure">🐉 You found the {userGame.items} 🐉</div>
       ) : null}
+
       <button className="direction" onClick={move} value={"n"}>
         N
       </button>
